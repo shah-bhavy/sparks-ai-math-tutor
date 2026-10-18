@@ -79,8 +79,8 @@ Under the hood, Sparks uses no separate speech-to-text or text-to-speech layer. 
 Get running in under a minute:
 
 ```bash
-git clone https://github.com/thegauravmahto/livetutor.git
-cd livetutor
+git clone https://github.com/shah-bhavy/sparks-ai-math-tutor.git
+cd sparks-ai-math-tutor
 pip install -r requirements.txt
 cp .env.example .env           # paste your GEMINI_API_KEY into .env
 python server.py               # serves http://127.0.0.1:8765
@@ -95,6 +95,19 @@ For chunk-level audio and event traces, run with `LOG_LEVEL=DEBUG`:
 ```bash
 LOG_LEVEL=DEBUG python server.py
 ```
+
+## 🚢 Deploy on Render (Free Web Service)
+
+1. In Render, create a **Web Service** from this repository.
+2. Use:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `python server.py`
+3. Add environment variables:
+   - `GEMINI_API_KEY` (secret)
+   - `LOG_LEVEL` (optional, default `INFO`)
+4. Render automatically provides `PORT`; `server.py` reads it in production.
+
+> Hosting on Render can be free, but Gemini API usage/quota is separate and depends on your Google AI Studio plan.
 
 ---
 

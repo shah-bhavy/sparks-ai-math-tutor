@@ -591,6 +591,11 @@ async def architecture():
     return FileResponse(HERE / "architecture.html")
 
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
+
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 
 
@@ -902,4 +907,9 @@ async def ws_endpoint(ws: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("server:app", host="127.0.0.1", port=8765, reload=False)
+    uvicorn.run(
+        "server:app",
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", "8765")),
+        reload=False,
+    )
